@@ -29,4 +29,4 @@
 
 (define tear
   (λ (p li)
-    (list (filter p li) (filter (negate p) li))))
+    (list (filter p li) (filter (negate p) li)))) ; Create a list of two lists, one is the list filtered by the predicate, the other is the list filtered by the negation of the predicate
