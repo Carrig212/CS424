@@ -12,6 +12,6 @@
 
 scatterGather :: a -> [Int] -> [a] -> [a]
 scatterGather x indicies vals
-  | (null indicies) || (null vals) = []
-  | ((head indicies) > (length vals)) || ((head indicies) < 0) = [x] ++ (scatterGather x (tail indicies) vals)
-  | otherwise = [vals !! (head indicies)] ++ (scatterGather x (tail indicies) vals)
+  | (null indicies) || (null vals) = [] -- If either the indicies, or the values are null, return an empty list
+  | ((head indicies) > (length vals)) || ((head indicies) < 0) = [x] ++ (scatterGather x (tail indicies) vals) -- If the index at the head of indicies is out of the range of vals, start a new list with the x value, and recurse with the tail of indicies
+  | otherwise = [vals !! (head indicies)] ++ (scatterGather x (tail indicies) vals) -- otherwise, start a new list with the vals vlaue at the index specified by the head of indicies, and recurse with the tail of indicies

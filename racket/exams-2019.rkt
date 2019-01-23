@@ -12,7 +12,7 @@
 (define scatter-gather
   (λ (indicies vals)
   (cond
-    ((or (null? indicies) (null? vals)) '())
-    ((or (> (car indicies) (length vals)) (< (car indicies) 0)) (cons '#f (scatter-gather (cdr indicies) vals)))
+    ((or (null? indicies) (null? vals)) '()) ; If either the indicies, or the values are null, return an empty list
+    ((or (> (car indicies) (length vals)) (< (car indicies) 0)) (cons '#f (scatter-gather (cdr indicies) vals))) ; If the index at the head of indicies is out of the range of vals, start a new list with  #f, and recurse with the tail of indicies
     (else
-      (cons (list-ref vals (car indicies)) (scatter-gather (cdr indicies) vals))))))
+      (cons (list-ref vals (car indicies)) (scatter-gather (cdr indicies) vals)))))) ; otherwise, start a new list with the vals vlaue at the index specified by the head of indicies, and recurse with the tail of indicies
