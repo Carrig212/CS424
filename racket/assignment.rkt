@@ -87,8 +87,8 @@
 (define grovel-poly-eval
   (λ (s x)
   (cond
-    ((null? s) '())
-    ((list? (car s)) (cons (grovel-poly-eval (car s) x) (grovel-poly-eval (cdr s) x)))
-    ((equal? (car s) 'poly) (if (null? (cdr s)) '0 (poly-eval (cdr s) x)))
+    ((null? s) '()) ; If the s expression is null, returm an empty list
+    ((list? (car s)) (cons (grovel-poly-eval (car s) x) (grovel-poly-eval (cdr s) x))) ; If the head of s is a list, start a list by recursing into that list, then again with the tail of that list
+    ((equal? (car s) 'poly) (if (null? (cdr s)) '0 (poly-eval (cdr s) x))) ; If the head of the list is "poly", check for paramaters. If there's none, return 0. Otherwise, return the evaluated polynomial
     (else
-      (cons (car s) (grovel-poly-eval (cdr s) x))))))
+      (cons (car s) (grovel-poly-eval (cdr s) x)))))) ; Otherwise, recurse with the tail of the s expression
